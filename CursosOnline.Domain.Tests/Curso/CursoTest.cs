@@ -1,4 +1,5 @@
-﻿using ExpectedObjects;
+﻿using CursosOnline.Domain.Tests._Util;
+using ExpectedObjects;
 using System;
 using Xunit;
 
@@ -35,12 +36,12 @@ namespace CursosOnline.Domain.Tests.Curso
                 Valor = (double)950
             };
 
-            Assert.Throws<ArgumentException>(() => 
-                new Curso(nomeInvalido, 
-                cursoEsperado.CargaHoraria, 
-                cursoEsperado.PublicoAlvo, 
-                cursoEsperado.Valor)
-                );
+            Assert.Throws<ArgumentException>(() =>
+                new Curso(nomeInvalido,
+                cursoEsperado.CargaHoraria,
+                cursoEsperado.PublicoAlvo,
+                cursoEsperado.Valor))
+                .ComMensagem("Nome invalido");
         }
 
         [Theory]
@@ -57,19 +58,19 @@ namespace CursosOnline.Domain.Tests.Curso
                 Valor = (double)950
             };
 
-            Assert.Throws<ArgumentException>(() => 
-                new Curso(cursoEsperado.Nome, 
-                cargaHoraria, 
-                cursoEsperado.PublicoAlvo, 
-                cursoEsperado.Valor)
-                );
+            Assert.Throws<ArgumentException>(() =>
+                new Curso(cursoEsperado.Nome,
+                cargaHoraria,
+                cursoEsperado.PublicoAlvo,
+                cursoEsperado.Valor))
+                .ComMensagem("Carga Horaria invalida");
         }
 
         [Theory]
         [InlineData(0)]
         [InlineData(-2)]
         [InlineData(-100)]
-        public void NaoDeveCursoTerValorMenorQue1(double valor)
+        public void NaoDeveCursoTerValorMenorQue1(double valorInvalido)
         {
             var cursoEsperado = new
             {
@@ -83,8 +84,8 @@ namespace CursosOnline.Domain.Tests.Curso
                 new Curso(cursoEsperado.Nome,
                 cursoEsperado.CargaHoraria,
                 cursoEsperado.PublicoAlvo,
-                valor)
-                );
+                valorInvalido))
+                .ComMensagem("Valor invalido");
         }
     }
 
@@ -101,13 +102,13 @@ namespace CursosOnline.Domain.Tests.Curso
         public Curso(string nome, double cargaHoraria, PublicoAlvo publicoAlvo, double valor)
         {
             if (string.IsNullOrEmpty(nome))
-                throw new ArgumentException();
+                throw new ArgumentException("Nome invalido");
 
             if (cargaHoraria < 1)
-                throw new ArgumentException();
+                throw new ArgumentException("Carga Horaria invalida");
 
             if (valor < 1)
-                throw new ArgumentException();
+                throw new ArgumentException("Valor invalido");
 
             Nome = nome;
             CargaHoraria =  cargaHoraria;
