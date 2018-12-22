@@ -48,7 +48,12 @@ namespace CursosOnline.Domain.Tests.Cursos
                 Descricao = _descricao
             };
 
-            var curso = new Curso(cursoEsperado.Nome, cursoEsperado.CargaHoraria, cursoEsperado.PublicoAlvo, cursoEsperado.Valor, cursoEsperado.Descricao);
+            var curso = 
+                new Curso(cursoEsperado.Nome, 
+                            cursoEsperado.CargaHoraria, 
+                            cursoEsperado.PublicoAlvo, 
+                            cursoEsperado.Valor, 
+                            cursoEsperado.Descricao);
             cursoEsperado.ToExpectedObject().ShouldMatch(curso);
         }
 
