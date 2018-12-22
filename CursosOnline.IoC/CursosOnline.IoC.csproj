@@ -1,0 +1,18 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netstandard2.0</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.EntityFrameworkCore" Version="2.2.0" />
+    <PackageReference Include="Microsoft.Extensions.Configuration" Version="2.2.0" />
+    <PackageReference Include="Microsoft.Extensions.DependencyInjection" Version="2.2.0" />
+  </ItemGroup>
+
+   <ItemGroup>
+    <ProjectReference Include="..\CursosOnline.Domain\CursosOnline.Domain.csproj" />
+    <ProjectReference Include="..\CursosOnline.Data\CursosOnline.Data.csproj" />
+  </ItemGroup>
+
+</Project>
