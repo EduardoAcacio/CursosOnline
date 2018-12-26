@@ -12,9 +12,18 @@ namespace CursosOnline.Web.Controllers
 {
     public class CursosController : Controller
     {
+        private readonly ArmazenadorDeCurso _armazenadorDeDurso;
+
+        public CursosController(ArmazenadorDeCurso armazenadorDeDurso)
+        {
+            _armazenadorDeDurso = armazenadorDeDurso;
+        }
+
         public IActionResult Index()
         {
-            return View("Index", PaginatedList<CursoParaListagemDto>.Create(CursosController, Request));
+            var cursos = new List<CursoParaListagemDto>();
+
+            return View("Index", PaginatedList<CursoParaListagemDto>.Create(cursos, Request));
         }
 
         public IActionResult Novo()
@@ -25,7 +34,9 @@ namespace CursosOnline.Web.Controllers
         [HttpPost]
         public IActionResult Salvar(CursoDto model)
         {
-            return ok;
+            _armazenadorDeDurso.Armazenar(model);
+            
+            return Ok();
         }
     }
 }

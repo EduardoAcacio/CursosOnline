@@ -1,10 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
+using CursosOnline.Domain._Base;
 
 namespace CursosOnline.Domain.Cursos
 {
-    public class Curso
+    public class Curso : Entidade
     {
         public Curso(string nome, double cargaHoraria, PublicoAlvo publicoAlvo, double valor, string descricao)
         {

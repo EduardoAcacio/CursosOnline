@@ -3,7 +3,7 @@ using System.Linq;
 using CursosOnline.Data.Contextos;
 using CursosOnline.Domain._Base;
 
-namespace CursosOnline.Data.CursosOnline
+namespace CursosOnline.Data.Repositorios
 {
     public class RepositorioBase<TEntidade> : IRepositorio<TEntidade> where TEntidade : Entidade
     {
